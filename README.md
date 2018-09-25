@@ -66,5 +66,32 @@ $ rpm -qlpv ./packagecloud-test-1.1-1.x86_64.rpm
 -rwxr-xr-x   1   root    root    8286 Jul 16  2014 /usr/local/bin/packagecloud_hello
 ````
 
-En el ejemplo, el comando se usó con el modificador **-q** para especificar que es un comando de consulta (query), **-l** para listar el contenido del paquete. El modificado **-v** u¡indica mayor verbosidad, por lo que el resultado incluye más informacion de cada archivo, como el modo, el dueño, el tamañoy la fecha.
+En el ejemplo, el comando se usó con el modificador **-q** para especificar que es un comando de consulta (query), **-l** para listar el contenido del paquete. El modificador **-v** u¡indica mayor verbosidad, por lo que el resultado incluye más informacion de cada archivo, como el modo, el dueño, el tamaño y la fecha.
+Por último, el modificarpo **-p** indica que se trata de un paquete rpm que se encuentra en un archivo y no entre los paquetes que ya están instalados.
 
+##### Listar los archivos de un RPM instalado
+
+````bash
+rpm -qlv openssh-server
+````
+
+##### Mostrar los script preinstall y postinstall de un rpm
+
+````bash
+$  rpm -q --scripts openssh-server
+preinstall scriptlet (using /bin/sh):
+getent group sshd >/dev/null || groupadd -g 74 -r sshd || :
+getent passwd sshd >/dev/null || \
+  useradd -c "Privilege-separated SSH" -u 74 -g sshd  -s /sbin/nologin \
+  -s /sbin/nologin -r -d /var/empty/sshd sshd 2> /dev/null || :
+postinstall scriptlet (using /bin/sh):
+/sbin/chkconfig --add sshd
+preuninstall scriptlet (using /bin/sh):
+if [ "$1" = 0 ]
+then
+	/sbin/service sshd stop > /dev/null 2>&1 || :
+	/sbin/chkconfig --del sshd
+fi
+postuninstall scriptlet (using /bin/sh):
+/sbin/service sshd condrestart > /dev/null 2>&1 || :
+````
