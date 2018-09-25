@@ -96,7 +96,7 @@ postuninstall scriptlet (using /bin/sh):
 /sbin/service sshd condrestart > /dev/null 2>&1 || :
 ````
 
-##### Listar los archivos marcados como de configuraion de un rpm
+##### Listar los archivos marcados como de configuración de un rpm
 
 Los archivos de configuracion no se sobreescriben al hacer update de rpm
 
