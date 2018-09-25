@@ -95,3 +95,15 @@ fi
 postuninstall scriptlet (using /bin/sh):
 /sbin/service sshd condrestart > /dev/null 2>&1 || :
 ````
+
+##### Listar los archivos marcados como de configuraion de un rpm
+
+Los archivos de configuracion no se sobreescriben al hacer update de rpm
+
+````bash
+rpm -qcv openssh-server
+-rw-r--r--    1 root    root                      341 Aug 31  2017 /etc/pam.d/ssh-keycat
+-rw-r--r--    1 root    root                      616 Aug 31  2017 /etc/pam.d/sshd
+-rw-------    1 root    root                     3879 Aug 31  2017 /etc/ssh/sshd_config
+-rw-r-----    1 root    root                      438 Aug 31  2017 /etc/sysconfig/sshd
+````
