@@ -12,7 +12,7 @@ Como el usuario sin privilgio crearemos la estructura del RPM en el directorio h
 ````bash
 rpmdev-setuptree
 ````
-Con este comenado se ha creado la siguiente estructura:
+Con este comando se ha creado la siguiente estructura:
 
 ````bash
 ls -al ~/rpmbuild/
@@ -25,6 +25,18 @@ drwxrwxr-x  2 centos centos 4096 Sep 23 19:20 SOURCES
 drwxrwxr-x  2 centos centos 4096 Sep 23 19:20 SPECS
 drwxrwxr-x  2 centos centos 4096 Sep 23 19:20 SRPMS
 ````
+Luego ponemos los originales en la carpeta SOURCES
+
+````bash
+cd ~/rpmbuild/SOURCES
+wget https://www.openssl.org/source/openssl-1.1.0i.tar.gz
+````
+
+Después debemos crear el archivo SPEC:
+
+````bash
+cd ~/rpmbuild/SPECS
+rpmdev-newspec pxshield
 
 
 
